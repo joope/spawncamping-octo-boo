@@ -3,28 +3,54 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package jblackjack.logiikka;
 
+import java.util.Objects;
+
 public class Kortti {
+
     private final Maa maa;
     private final int arvo;
-    
-    public Kortti(int arvo, Maa maa){
+
+    public Kortti(int arvo, Maa maa) {
         this.maa = maa;
         this.arvo = arvo;
     }
-    public int getArvo(){
+
+    public int getArvo() {
         return arvo;
     }
-    public Maa getMaa(){
+
+    public Maa getMaa() {
         return maa;
-    } 
+    }
+
     @Override
-    public String toString(){
+    public String toString() {
         return maa + " " + arvo;
     }
-    
-    
-    
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 53 * hash + Objects.hashCode(this.maa);
+        hash = 53 * hash + this.arvo;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        } else if (!(obj instanceof Kortti)) return false;
+
+        Kortti vertailtava = (Kortti) obj;
+        if (vertailtava.arvo == this.arvo && vertailtava.maa == this.maa) {
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
 }

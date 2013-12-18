@@ -4,16 +4,11 @@ package jblackjack.logiikka;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class Korttipakka {
-    public ArrayList<Kortti> pakka;
+public class Korttipakka extends KorttiKokoelma{
     
     public Korttipakka(){
-        pakka = new ArrayList();
+        super();
         lisaaKortit();
-    }
-    
-    public void lisaaKortti(Kortti kortti){
-        pakka.add(kortti);
     }
 
     private void lisaaKortit() {
@@ -32,18 +27,12 @@ public class Korttipakka {
     }
     
     public void sekoitaPakka(){
-        Collections.shuffle(pakka);
-    }
-    
-    public void luetteleKortit(){
-        for (Kortti kortti : pakka) {
-            System.out.println(kortti);
-        }
+        Collections.shuffle(kortit);
     }
     
     public Kortti nostaKortti(){
-        Kortti nostettava = pakka.get(pakka.size() - 1);
-        pakka.remove(pakka.size() - 1);
+        Kortti nostettava = kortit.get(kortit.size() - 1);
+        kortit.remove(kortit.size() - 1);
         return nostettava;
     }
 }
