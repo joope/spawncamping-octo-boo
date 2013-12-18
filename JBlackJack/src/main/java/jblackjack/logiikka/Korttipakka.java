@@ -11,19 +11,23 @@ public class Korttipakka {
         pakka = new ArrayList();
         lisaaKortit();
     }
+    
+    public void lisaaKortti(Kortti kortti){
+        pakka.add(kortti);
+    }
 
     private void lisaaKortit() {
         for (int i = 1; i < 14; i++) {
-            pakka.add(new Kortti(i, Maa.RISTI));
+            lisaaKortti(new Kortti(i, Maa.RISTI));
         }
         for (int i = 1; i < 14; i++) {
-            pakka.add(new Kortti(i, Maa.HERTTA));
+            lisaaKortti(new Kortti(i, Maa.HERTTA));
         }
         for (int i = 1; i < 14; i++) {
-            pakka.add(new Kortti(i, Maa.PATA));
+            lisaaKortti(new Kortti(i, Maa.PATA));
         }
         for (int i = 1; i < 14; i++) {
-            pakka.add(new Kortti(i, Maa.RUUTU));
+            lisaaKortti(new Kortti(i, Maa.RUUTU));
         }
     }
     

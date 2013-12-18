@@ -1,15 +1,17 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 
 package jblackjack.logiikka;
 
-/**
- *
- * @author pyjopy
- */
+import java.util.ArrayList;
+
 public class Pelaaja {
+    public String nimi;
+    public ArrayList<Kortti> kasi;
+    public int rahaa;
     
+    public Pelaaja(String nimi, int rahaa){
+        this.nimi = nimi;
+        this.rahaa = rahaa;
+        kasi = new ArrayList();
+    }
 }
