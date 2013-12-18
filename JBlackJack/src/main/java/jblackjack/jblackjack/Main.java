@@ -7,8 +7,6 @@ public class Main
     {
         Korttipakka pakka = new Korttipakka();
         pakka.sekoitaPakka();
-        System.out.println(pakka.nostaKortti());
-        pakka.sekoitaPakka();
-        System.out.println(pakka.nostaKortti());
+        
     }
 }
