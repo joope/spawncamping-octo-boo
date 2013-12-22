@@ -45,11 +45,7 @@ public class Kortti {
         } else if (!(obj instanceof Kortti)) return false;
 
         Kortti vertailtava = (Kortti) obj;
-        if (vertailtava.arvo == this.arvo && vertailtava.maa == this.maa) {
-            return true;
-        } else {
-            return false;
-        }
+        return vertailtava.arvo == this.arvo && vertailtava.maa == this.maa;
 
     }
 
