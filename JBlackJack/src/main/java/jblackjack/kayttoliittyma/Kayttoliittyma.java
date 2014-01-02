@@ -1,13 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package jblackjack.kayttoliittyma;
 
-import java.awt.Container;
-import java.awt.Dimension;
+import java.awt.*;
+import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 
@@ -16,12 +11,14 @@ public class Kayttoliittyma implements Runnable {
     private JFrame frame;
 
     public Kayttoliittyma() {
+        
     }
 
     @Override
     public void run() {
-        frame = new JFrame("Otsikko");
-        frame.setPreferredSize(new Dimension(200, 100));
+        frame = new JFrame("JBlackJack");
+        frame.setPreferredSize(new Dimension(800, 600));
+        frame.setBackground(Color.green);
 
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
@@ -32,7 +29,14 @@ public class Kayttoliittyma implements Runnable {
     }
 
     private void luoKomponentit(Container container) {
+        BoxLayout layout = new BoxLayout(container, BoxLayout.Y_AXIS);
+        container.setLayout(layout);
+        container.add(new Ylapalkki());
+        container.add(new JakajanKasi());
+        container.add(new PelaajanKasi());
+        container.add(new Valikko());
     }
+    
 
     public JFrame getFrame() {
         return frame;
