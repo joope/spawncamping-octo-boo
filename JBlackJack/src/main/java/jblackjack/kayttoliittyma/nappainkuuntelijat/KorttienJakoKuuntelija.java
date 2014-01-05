@@ -14,15 +14,15 @@ import jblackjack.logiikka.PelinPaivitys;
  *
  * @author pyjopy
  */
-public class HitNapinKuuntelija implements ActionListener{
+public class KorttienJakoKuuntelija implements ActionListener {
     PelinPaivitys peli;
-    public HitNapinKuuntelija(PelinPaivitys peli){
+    public KorttienJakoKuuntelija(PelinPaivitys peli) {
         this.peli = peli;
     }
 
     @Override
     public void actionPerformed(ActionEvent ae) {
-        peli.pyydaUusiKortti();
+        peli.jaaKortit();
     }
     
 }
