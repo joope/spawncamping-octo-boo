@@ -1,0 +1,18 @@
+Aihe: Graafinen BlackJack-peli
+
+Peli toteuttaa perinteisen blackjack-pelin toiminnallisuuden.
+Peli jatkuu niin kauan kunnes rahat loppuvat, rahat ovat yli 1000 tai pelaaja lopettaa pelin
+Toteuttamatonta toiminnallisuutta:
+	//Pelin voi myös jättää kesken ja jatkaa siitä mihin jäätiin
+	//Peli tallentaa huipputulokset nimimerkeittäin
+	//Pelissä monta pelaajaa samaan aikaan
+
+Käyttäjät: Pelaaja
+
+Toiminnot: 
+-Hit, eli pyydä kortti
+-Stay, eli ei enään kortteja
+-Double down, eli 2x panokset ja seuraavan kortin jälkeen ei enää kortteja
+-Uusi jako
+	-jos 
+
