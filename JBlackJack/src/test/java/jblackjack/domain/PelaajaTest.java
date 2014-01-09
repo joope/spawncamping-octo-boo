@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package jblackjack.jblackjack;
+package jblackjack.domain;
 
 import jblackjack.domain.Pelaaja;
 import org.junit.After;

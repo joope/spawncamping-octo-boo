@@ -1,5 +1,5 @@
 
-package jblackjack.jblackjack;
+package jblackjack.domain;
 
 import jblackjack.domain.Pelaajat;
 import org.junit.After;

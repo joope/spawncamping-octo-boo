@@ -56,7 +56,9 @@ public class Kayttoliittyma implements Runnable {
         
         container.add(luoInfopalkki());
         jakajankasi = new JLabel("Jakajankäsi");
+        jakajankasi.setFont(new Font("Serif", Font.PLAIN, 20));
         pelaajankasi = new JLabel("Pelaajan käsi");
+        pelaajankasi.setFont(new Font("Serif", Font.PLAIN, 20));
         container.add(jakajankasi);
         container.add(new JLabel("-   -   -   -   -   -"));
         container.add(pelaajankasi);

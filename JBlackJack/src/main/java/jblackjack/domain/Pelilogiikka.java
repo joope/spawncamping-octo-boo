@@ -33,9 +33,9 @@ public class Pelilogiikka {
     }
 
     public void uusiPeli() {
-        if(status.equals("")){
-            pelaaja.luovuta();
-        }
+        //if(status.equals("")){
+        //    pelaaja.luovuta();
+        //}
         if(pelaaja.panos < 5){
             pelaaja.laitaPanos(5);
         }
@@ -122,12 +122,16 @@ public class Pelilogiikka {
     }
 
     /**
-     * 
+     * Antaa pelaajalle yhden kortin, minkä jälkeen kutsuu pysyKorteissa-metodia.
      */
     public void doubleDown() {
         pyydaUusiKortti();
         pysyKorteissa();
     }
+    
+    /**
+     * 
+     */
 
     private void voitto() {
         pelaaja.voita();

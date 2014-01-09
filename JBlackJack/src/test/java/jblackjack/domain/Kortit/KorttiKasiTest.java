@@ -1,6 +1,6 @@
 
 
-package jblackjack.jblackjack;
+package jblackjack.domain.Kortit;
 
 import jblackjack.domain.Kortit.Kortti;
 import jblackjack.domain.Kortit.KorttiKasi;

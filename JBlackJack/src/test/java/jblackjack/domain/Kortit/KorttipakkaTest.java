@@ -1,6 +1,6 @@
 
 
-package jblackjack.jblackjack;
+package jblackjack.domain.Kortit;
 
 import jblackjack.domain.Kortit.Korttipakka;
 import java.util.ArrayList;
