@@ -1,43 +1,167 @@
+package jblackjack.domain;
 
-package jblackjack.logiikka;
-
+import jblackjack.domain.Kortit.Korttipakka;
+import jblackjack.domain.Kortit.KorttiKasi;
 import java.util.Scanner;
+import jblackjack.kayttoliittyma.Kayttoliittyma;
 
-public class Peli {
-    public Pelaajat pelaajat;
+/**
+ * Pelilogiikka huolehtii pelin säännöistä ja vastaa käyttöliittymän kutsuihin.
+ */
+public class Pelilogiikka {
+
+    public Kayttoliittyma gui;
+    public Pelaaja pelaaja;
     public Korttipakka pakka;
-    public Pelaaja jakaja;
+    public KorttiKasi jakaja;
     public Scanner lukija;
-    
-    public Peli(){
+    private String status;
+
+    public Pelilogiikka() {
         lukija = new Scanner(System.in);
-        pelaajat = new Pelaajat();
-        pakka = new Korttipakka();
-        jakaja = new Pelaaja("Jakaja", 0);
+        jakaja = new KorttiKasi();
+        pelaaja = new Pelaaja("Pelaaja", 100);
+        status = "Peli alkaa";
     }
 
+    /**
+     *
+     */
     public void kaynnista() {
-        pelaajat.lisaaPelaaja(new Pelaaja("Joni", 999));
-        pelaajat.lisaaPelaaja(new Pelaaja("Jiikoo", 999));
-        pelaajat.lisaaPelaaja(new Pelaaja("Jonne", 999));
-        
-        pelaajat.otaPanokset();
-        pakka.sekoitaPakka();
+        gui = new Kayttoliittyma(this);
+        gui.run();
+    }
+
+    public void uusiPeli() {
+        if(status.equals("")){
+            pelaaja.luovuta();
+        }
+        if(pelaaja.panos < 5){
+            pelaaja.laitaPanos(5);
+        }
+        pakka = new Korttipakka();
+        pelaaja.tyhjennaKasi();
+        jakaja.tyhjennaKasi();
         jaaKortit();
-        
+        status = "";
+    }
+
+    public void rahatLoppuivat() {
+        pelaaja = new Pelaaja("Pelaaja", 100);
+        status = "Peli alkaa";
+        gui.rahatLoppuivat();
+    }
+
+    /**
+     * Sekoittaa pakan,jakaa kortit pelaajan ja jakajan käteen
+     */
+    public void jaaKortit() {
+        pakka.sekoitaPakka();
+        pelaaja.otaKortti(pakka);
+        pelaaja.otaKortti(pakka);
+        jakaja.nostaKortti(pakka);
         tulostaTilanne();
     }
-    
-    public void jaaKortit(){
-        pelaajat.jaaKortit(pakka);
-        jakaja.kasi.lisaaKortti(pakka.nostaKortti());
-    }
-    
-    public void tulostaTilanne(){
-        jakaja.tulostaTiedot();
-        System.out.println("________________________________");
-        pelaajat.tulostaPelaajat();
+
+    /**
+     * Tulostaa consoleen jakajan käden kortit pelaajan kortit, pelaajan rahat
+     * ja panoksen.
+     */
+    public void tulostaTilanne() {
+        System.out.println(jakaja.luetteleKortit());
+        pelaaja.tulostaTiedot();
+        System.out.println("******");
     }
 
-    
+    /**
+     * Suoritetaan jos pelaaja pyytää uuden kortin
+     */
+    public void pyydaUusiKortti() {
+        pelaaja.otaKortti(pakka);
+        if (pelaaja.kasi.laskeKadenArvo() > 21) {
+            havio();
+        }
+        tulostaTilanne();
+    }
+
+    /**
+     * Suoritetaan jos pelaaja ei enää halua kortteja. Tällöin jakaja nostaa
+     * kortteja kunnes jakajan käsi on yli 16 arvoltaan. Lopuksi tarkistetaan
+     * kumpi voitti, jakaja vai pelaaja.
+     */
+    public void pysyKorteissa() {
+        while (jakaja.laskeKadenArvo() < 17) {
+            jakaja.nostaKortti(pakka);
+        }
+
+        tulostaTilanne();
+        tarkistaKierroksenTulos();
+    }
+
+    /**
+     * Jos jakajan käsi menee yli 21, pelaaja voittaa Jos pelaajan käsi on yli
+     * jakajan käden, mutta alle 21, pelaaja voittaa Jos pelaajan käsi on
+     * yhtäsuuri jakajan kanssa, tasapeli muulloin pelaaja häviää.
+     */
+    public void tarkistaKierroksenTulos() {
+        if(pelaaja.kasi.laskeKadenArvo() == 21 && pelaaja.kasi.laskeKadenArvo() > jakaja.laskeKadenArvo()){
+            voitto();
+            status = "BlackJack!";
+        }
+        else if (pelaaja.kasi.laskeKadenArvo() > 21) {
+            havio();
+        } else if (jakaja.laskeKadenArvo() > 21) {
+            voitto();
+        } else if (pelaaja.kasi.laskeKadenArvo() > jakaja.laskeKadenArvo()) {
+            voitto();
+        } else if (pelaaja.kasi.laskeKadenArvo() == jakaja.laskeKadenArvo()) {
+            tasapeli();
+        } else {
+            havio();
+        }
+    }
+
+    /**
+     * 
+     */
+    public void doubleDown() {
+        pyydaUusiKortti();
+        pysyKorteissa();
+    }
+
+    private void voitto() {
+        pelaaja.voita();
+        status = "Voitit!";
+        if (pelaaja.rahaa >= 1000) {
+            lopullinenVoitto();
+        }
+    }
+
+    private void havio() {
+        pelaaja.havia();
+        status = "Hävisit pelin :(";
+        if (pelaaja.rahaa <= 0) {
+            rahatLoppuivat();
+        }
+    }
+
+    private void tasapeli() {
+        status = "Tasapeli!";
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void lisaaPanoksia(int maara) {
+        pelaaja.laitaPanos(maara);
+    }
+
+    private void lopullinenVoitto() {
+        gui.voititPelin();
+        pelaaja = new Pelaaja("Pelaaja", 100);
+        status = "Peli alkaa";
+
+    }
+
 }

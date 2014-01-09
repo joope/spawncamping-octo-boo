@@ -1,35 +1,54 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package jblackjack.logiikka;
+
+package jblackjack.domain.Kortit;
 
 import java.util.ArrayList;
 
+/**
+ *
+ * @author pyjopy
+ * Korttipakan ja korttikäden yliluokka.
+ * 
+ */
 public class KorttiKokoelma {
 
+    /**
+     * Lista korteista
+     */
     public ArrayList<Kortti> kortit;
 
     public KorttiKokoelma() {
         kortit = new ArrayList();
     }
 
+    /**
+     * lisää kortin kokoelmaan
+     * @param kortti
+     */
     public void lisaaKortti(Kortti kortti) {
         kortit.add(kortti);
     }
 
+    /**
+     * poistaa kortti kokoelmasta
+     * @param kortti
+     */
     public void poistaKortti(Kortti kortti) {
         kortit.remove(kortti);
     }
     
-    public void luetteleKortit(){
+     /**
+     * Palauttaa luettelon korteista merkkijonona
+     * @return
+     */
+    public String luetteleKortit(){
         if(kortit.isEmpty()){
-            System.out.println("Ei kortteja");
+            return "";
         } else {
+            String palautus = "";
             for (Kortti kortti : kortit) {
-                System.out.print(kortti +", ");
+                palautus += kortti + ", ";
             }
+            return palautus;
         }
     }
 

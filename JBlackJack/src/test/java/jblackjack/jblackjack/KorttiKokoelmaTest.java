@@ -6,9 +6,9 @@
 
 package jblackjack.jblackjack;
 
-import jblackjack.logiikka.Kortti;
-import jblackjack.logiikka.KorttiKokoelma;
-import jblackjack.logiikka.Maa;
+import jblackjack.domain.Kortit.Kortti;
+import jblackjack.domain.Kortit.KorttiKokoelma;
+import jblackjack.domain.Kortit.Maa;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -46,7 +46,19 @@ public class KorttiKokoelmaTest {
         kokoelma.lisaaKortti(new Kortti(5, Maa.PATA));
         kokoelma.poistaKortti(new Kortti(5, Maa.PATA));
         assertEquals(0, kokoelma.kortit.size());
-    }                   
+    }
+    
+    @Test
+    public void luetteleKorttejaPalauttaaEiKorttejaJosTyhja(){
+        assertEquals("Ei kortteja!", kokoelma.luetteleKortit());
+    }
+    
+    @Test
+    public void luetteleKortitJosKorttejaLisatty(){
+        kokoelma.lisaaKortti(new Kortti(5, Maa.HERTTA));
+        kokoelma.lisaaKortti(new Kortti(10, Maa.RUUTU));
+        assertEquals("HERTTA 5, RUUTU 10, ", kokoelma.luetteleKortit());
+    }
     
     
 }

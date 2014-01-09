@@ -6,7 +6,7 @@
 
 package jblackjack.jblackjack;
 
-import jblackjack.logiikka.*;
+import jblackjack.domain.Pelaaja;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

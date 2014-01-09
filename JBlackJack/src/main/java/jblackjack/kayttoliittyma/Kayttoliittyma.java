@@ -5,6 +5,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 import jblackjack.domain.Pelilogiikka;
@@ -46,6 +47,7 @@ public class Kayttoliittyma implements Runnable {
 
         frame.pack();
         frame.setVisible(true);
+        paivita();
     }
 
     private void luoKomponentit(Container container) {
@@ -56,10 +58,31 @@ public class Kayttoliittyma implements Runnable {
         jakajankasi = new JLabel("Jakajankäsi");
         pelaajankasi = new JLabel("Pelaajan käsi");
         container.add(jakajankasi);
-        container.add(new JLabel(" "));
+        container.add(new JLabel("-   -   -   -   -   -"));
         container.add(pelaajankasi);
         container.add(luoPeliValikko());
     }
+    /**
+     * Ilmoittaa pelaajalle pelin häviöstä pop-up-ikkunalla.
+     * 
+     */
+    public void rahatLoppuivat(){
+        JOptionPane.showMessageDialog(null, "Hävisit pelin ja rahasi loppuivat. Aloita uusi peli");
+    }
+    
+    /**
+     * Ilmoittaa pelaajalle pelin voitosta pop-up-ikkunalla.
+     */
+    
+    public void voititPelin() {
+        JOptionPane.showMessageDialog(null, "Onneksi olkoon! Voitit pelin. Ethän vain juksannut järjestelmää? ;)");
+    }
+    
+    /**
+     * Päivittää käyttöliittymän tiedot.
+     * Jos peli on käynnissä niin piilottaa panoksenmuuttamisnappulat.
+     * Jos peli ei ole käynnissä niin piilottaa "Hit", "Stay" ja "Doubledown" nappulat.
+     */
 
     public void paivita() {
         rahaaJaljella.setText("Rahaa: " + peli.pelaaja.rahaa);
@@ -68,6 +91,10 @@ public class Kayttoliittyma implements Runnable {
         pelaajankasi.setText(peli.pelaaja.kasi.luetteleKortit());
         voittoStatus.setText(peli.getStatus());
         
+        piilotaNapit();
+    }
+    
+    private void piilotaNapit(){
         if(!peli.getStatus().equals("")){
             lyoKortti.setEnabled(false);
             jaaTahan.setEnabled(false);
@@ -132,4 +159,6 @@ public class Kayttoliittyma implements Runnable {
         
         return peliValikko;
     }
+
+
 }

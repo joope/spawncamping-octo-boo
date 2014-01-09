@@ -3,19 +3,29 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package jblackjack.logiikka;
+package jblackjack.domain.Kortit;
 
 import java.util.Objects;
 
+/**
+ * 
+ * @author pyjopy
+ */
 public class Kortti {
 
     private final Maa maa;
     private final int arvo;
 
+    /**
+     *
+     * @param arvo
+     * @param maa
+     */
     public Kortti(int arvo, Maa maa) {
         this.maa = maa;
         this.arvo = arvo;
     }
+
 
     public int getArvo() {
         return arvo;
@@ -25,11 +35,19 @@ public class Kortti {
         return maa;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String toString() {
         return maa + " " + arvo;
     }
 
+    /**
+     * generoitu metodi
+     * @return
+     */
     @Override
     public int hashCode() {
         int hash = 5;
@@ -38,6 +56,11 @@ public class Kortti {
         return hash;
     }
 
+    /**
+     * Palauttaa true jos korttien maa ja arvo ovat samat.
+     * @param obj
+     * @return
+     */
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {

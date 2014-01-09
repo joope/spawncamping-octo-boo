@@ -1,19 +1,41 @@
 
-package jblackjack.logiikka;
+package jblackjack.domain;
+
+import jblackjack.domain.Kortit.Kortti;
+import jblackjack.domain.Kortit.KorttiKasi;
+
+/**
+ * 
+ */
 
 public class Jakaja {
+
     public KorttiKasi kasi;
     
+    /**
+     *
+     */
     public Jakaja(){
         kasi = new KorttiKasi();
     }
     
-    public void annaKortti(Kortti kortti){
-        kasi.lisaaKortti(kortti);
-    }
-    
+    /**
+     *
+     */
     public void tulostaTiedot(){
         System.out.println("Jakaja: ");
-        kasi.luetteleKortit();
+        System.out.println(kasi.luetteleKortit());
+    }
+    
+    public void tyhjennaKasi(){
+        kasi.kortit.clear();
+    }
+    
+    /**
+     *
+     * @param kortti
+     */
+    public void otaKortti(Kortti kortti){
+        kasi.kortit.add(kortti);
     }
 }

@@ -1,46 +1,44 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 
 package jblackjack.jblackjack;
 
+import jblackjack.domain.Kortit.Kortti;
+import jblackjack.domain.Kortit.KorttiKasi;
+import jblackjack.domain.Kortit.Maa;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
+import org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
-/**
- *
- * @author pyjopy
- */
+
 public class KorttiKasiTest {
+    KorttiKasi kasi;
     
     public KorttiKasiTest() {
     }
     
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
     @Before
     public void setUp() {
+        kasi = new KorttiKasi();
     }
     
-    @After
-    public void tearDown() {
+    @Test
+    public void laskeKadenArvoLaskeeOikein(){
+        kasi.laskeKortinArvoJaLisaaSeKadenArvoon(new Kortti(7, Maa.HERTTA));
+        kasi.laskeKortinArvoJaLisaaSeKadenArvoon(new Kortti(2, Maa.RISTI));
+        kasi.laskeKortinArvoJaLisaaSeKadenArvoon(new Kortti(13, Maa.PATA));
+        assertEquals(19, kasi.laskeKadenArvo());
+    }
+    
+    @Test
+    public void laskeKadenArvoOikein(){
+        kasi.laskeKortinArvoJaLisaaSeKadenArvoon(new Kortti(10, Maa.HERTTA));
+        kasi.laskeKortinArvoJaLisaaSeKadenArvoon(new Kortti(1, Maa.RISTI));
+        assertEquals(21, kasi.laskeKadenArvo());
     }
 
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
+
 }

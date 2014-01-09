@@ -2,9 +2,9 @@
 
 package jblackjack.jblackjack;
 
+import jblackjack.domain.Kortit.Korttipakka;
 import java.util.ArrayList;
 import java.util.Arrays;
-import jblackjack.logiikka.*;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

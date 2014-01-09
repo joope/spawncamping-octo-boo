@@ -6,7 +6,8 @@
 
 package jblackjack.jblackjack;
 
-import jblackjack.logiikka.*;
+import jblackjack.domain.Kortit.Maa;
+import jblackjack.domain.Kortit.Kortti;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
