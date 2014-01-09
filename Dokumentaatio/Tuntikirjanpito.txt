@@ -1,6 +1,0 @@
-16.12.2013 -- 18.00-22.00  
-Tein git-tunnuksen, repon, tein nb-projektin ja mietin aihetta monta tuntia
-18.12.2013 -- 17.00-22.00
-Testausluokkien luomista, rakenteen pohtimista, pelaajaluokan luominen
-
-
