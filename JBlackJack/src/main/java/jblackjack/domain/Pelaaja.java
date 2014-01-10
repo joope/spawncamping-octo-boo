@@ -4,7 +4,7 @@ import jblackjack.domain.Kortit.KorttiKasi;
 import jblackjack.domain.Kortit.Korttipakka;
 
 /**
- * Pelaaja-luokka sisältää pelaajan toiminnallisuuden
+ * Pelaaja-luokka 
  */
 public class Pelaaja {
 
@@ -27,25 +27,26 @@ public class Pelaaja {
         viimeToiminto = 0;
     }
 
-    /** Ottaa korttipakasta kortin ja lisää sen pelaajan käteen.
+    /**
+     * Ottaa korttipakasta kortin ja lisää sen pelaajan käteen.
      *
      * @param pakka
      */
     public void otaKorttiKorttipakasta(Korttipakka pakka) {
         kasi.nostaKortti(pakka);
     }
-    
-    
-    /** Tyhjentää pelaajan käden.
+
+    /**
+     * Tyhjentää pelaajan käden.
      *
      */
-
     public void tyhjennaKasiKorteista() {
         kasi.tyhjennaKasi();
     }
-
-    /** Pelaajan rahoja kasvatetaan kaksi kertaa panoksen verran, 
-     * ja uudeksi panokseksi lisätään vanha panos.
+    
+    /**
+     * Pelaajan rahoja kasvatetaan kaksi kertaa panoksen verran, ja uudeksi
+     * panokseksi lisätään vanha panos.
      *
      */
     public void voita() {
@@ -55,14 +56,16 @@ public class Pelaaja {
         laitaPanos(uusipanos);
     }
 
-    /** Pelaajan panos kaksinkertaistetaan.
+    /**
+     * Pelaajan panos kaksinkertaistetaan.
      *
      */
     public void doubleDown() {
         laitaPanos(panos);
     }
 
-    /** Pelaajan menettää rahoistaan puolet nykyisestä panoksesta.
+    /**
+     * Pelaajan menettää rahoistaan puolet nykyisestä panoksesta.
      *
      */
     public void luovuta() {
@@ -70,9 +73,10 @@ public class Pelaaja {
         panos = 0;
     }
 
-    /** Ottaa rahaa pelaajalta ja laittaa sen panokseksi.
-     * Jos panostus on negatiivinen, pelaajan panoksesta vähennetään sen määrä,
-     * ja lisätään rahoihin, kunhan panoksen määrä ei mene alle viiden.
+    /**
+     * Ottaa rahaa pelaajalta ja laittaa sen panokseksi. Jos panostus on
+     * negatiivinen, pelaajan panoksesta vähennetään sen määrä, ja lisätään
+     * rahoihin, kunhan panoksen määrä ei mene alle viiden.
      *
      * @param panostus
      */
@@ -86,11 +90,16 @@ public class Pelaaja {
         }
     }
 
-    public int getPanos() {
-        return panos;
+    /**
+     * Nollaa pelaajan panoksen
+     *
+     */
+    public void havia() {
+        panos = 0;
     }
 
-    /** Tulostaa konsoliin pelaajan nimen, kortit ja rahan määrän.
+    /**
+     * Tulostaa konsoliin pelaajan nimen, kortit ja rahan määrän.
      *
      */
     public void tulostaTiedot() {
@@ -99,10 +108,7 @@ public class Pelaaja {
         System.out.println("Rahaa: " + rahaa);
     }
 
-    /** Nollaa pelaajan panoksen
-     *
-     */
-    public void havia() {
-        panos = 0;
+    public int getPanos() {
+        return panos;
     }
 }

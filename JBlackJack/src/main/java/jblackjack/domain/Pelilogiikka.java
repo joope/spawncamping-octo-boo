@@ -24,33 +24,43 @@ public class Pelilogiikka {
         status = "Peli alkaa";
     }
 
-    /** Luo käyttöliittymän ja laittaa sen käyntiin.
+    /**
+     * Luo käyttöliittymän ja laittaa sen käyntiin.
      *
      */
     public void kaynnista() {
         gui = new Kayttoliittyma(this);
         gui.run();
     }
-    
-    /** Aloittaa pelissä uuden kierroksen.
-     * Kortipakka luodaan ja sekoitetaan.
-     * Pelaajan ja jakajan kädet tyhjennetään
-     * ja lopuksi jaetaan kaikille uusi käsi.
-     */
 
+    /**
+     * Aloittaa pelissä uuden kierroksen. Kortipakka luodaan ja sekoitetaan.
+     * Pelaajan ja jakajan kädet tyhjennetään ja lopuksi jaetaan kaikille uusi
+     * käsi.
+     */
     public void aloitaUusiKierros() {
-        
-        pelaaja.tyhjennaKasiKorteista();
-        jakaja.tyhjennaKasi();
+        if (pelaaja.panos < 5) {
+            pelaaja.laitaPanos(5);
+        }
+        tyhjennaPelaajienKadetKorteista();
         jaaKortitPelaajalleJaJakajalle();
         status = "";
     }
     
-    /** Jos pelaajan rahat loppuvat, aloitetaan uusi peli.
-     * Pelaajalle annetaan rahat takaisin ja pelaajalle ilmoitetaan tästä pop-up-ikkunan avulla.
-     * 
+    /**
+     * Tyhjentää pelaajan ja jakajan kädet korteista.
      */
 
+    public void tyhjennaPelaajienKadetKorteista() {
+        pelaaja.tyhjennaKasiKorteista();
+        jakaja.tyhjennaKasi();
+    }
+
+    /**
+     * Jos pelaajan rahat loppuvat, aloitetaan uusi peli. Pelaajalle annetaan
+     * rahat takaisin ja pelaajalle ilmoitetaan tästä pop-up-ikkunan avulla.
+     *
+     */
     public void pelaajanRahatLoppuivat() {
         pelaaja = new Pelaaja("Pelaaja", 100);
         status = "Peli alkaa";
@@ -80,8 +90,8 @@ public class Pelilogiikka {
     }
 
     /**
-     * Suoritetaan jos pelaaja pyytää uuden kortin.
-     * Jos pelaajan käden arvo ylittää 21 kortinjaon jälkeen niin pelaaja häviää.
+     * Suoritetaan jos pelaaja pyytää uuden kortin. Jos pelaajan käden arvo
+     * ylittää 21 kortinjaon jälkeen niin pelaaja häviää.
      */
     public void pyydaUusiKortti() {
         pelaaja.otaKorttiKorttipakasta(pakka);
@@ -111,11 +121,10 @@ public class Pelilogiikka {
      * yhtäsuuri jakajan kanssa, tasapeli muulloin pelaaja häviää.
      */
     public void tarkistaKierroksenTulos() {
-        if(pelaaja.kasi.laskeKadenArvo() == 21 && pelaaja.kasi.laskeKadenArvo() > jakaja.laskeKadenArvo()){
+        if (pelaaja.kasi.laskeKadenArvo() == 21 && pelaaja.kasi.laskeKadenArvo() > jakaja.laskeKadenArvo()) {
             voitto();
             status = "BlackJack!";
-        }
-        else if (pelaaja.kasi.laskeKadenArvo() > 21) {
+        } else if (pelaaja.kasi.laskeKadenArvo() > 21) {
             havio();
         } else if (jakaja.laskeKadenArvo() > 21) {
             voitto();
@@ -129,17 +138,19 @@ public class Pelilogiikka {
     }
 
     /**
-     * Antaa pelaajalle yhden kortin, minkä jälkeen kutsuu pysyKorteissa-metodia.
+     * Antaa pelaajalle yhden kortin, minkä jälkeen kutsuu
+     * pysyKorteissa-metodia.
      */
     public void doubleDown() {
         pyydaUusiKortti();
         pysyKorteissa();
     }
-    
-    /**
-     * 
-     */
 
+    /**
+     * Kutsuu pelaajan voitto-metodia ja muuttaa statukseen "Voitit!". Jos
+     * kutsuttaessa pelaajan rahat ovat 1000 tai yli, kutsutaan metodia
+     * lopullinenVoitto()
+     */
     private void voitto() {
         pelaaja.voita();
         status = "Voitit!";
@@ -148,6 +159,11 @@ public class Pelilogiikka {
         }
     }
 
+    /**
+     * Kutsuu pelaajan havia-metodia ja muuttaa statukseksi "Hävisit pelin :("
+     * Jos pelaajan rahat ovat nolla tai alle niin kutsutaan
+     * pelaajanRahatLoppuivat-metodia
+     */
     private void havio() {
         pelaaja.havia();
         status = "Hävisit pelin :(";
@@ -156,6 +172,10 @@ public class Pelilogiikka {
         }
     }
 
+    /**
+     * Kutsutaan jos jakajan ja pelaajan kädet ovat samanarvoiset. Muuttaa
+     * statukseksi "Tasapeli!"
+     */
     private void tasapeli() {
         status = "Tasapeli!";
     }
@@ -164,10 +184,21 @@ public class Pelilogiikka {
         return status;
     }
 
+    /**
+     * Lisaa tai vähentää pelaajan panosta annetun verran. Käyttöliittymän
+     * panoksenlisäys ja -vähennys painikkeet kutsuvat tätä metodia.
+     *
+     * @param maara
+     */
     public void lisaaPanoksia(int maara) {
         pelaaja.laitaPanos(maara);
     }
 
+    /**
+     * Ilmoittaa pelaajalle voitosta pop-up-ikkunalla, ja antaa pelaajalle 100
+     * rahaa.
+     *
+     */
     private void lopullinenVoitto() {
         gui.voititPelin();
         pelaaja = new Pelaaja("Pelaaja", 100);

@@ -2,6 +2,18 @@
 Tein git-tunnuksen, repon, tein nb-projektin ja mietin aihetta monta tuntia
 18.12.2013 -- 5h
 Testausluokkien luomista, rakenteen pohtimista, pelaajaluokan luominen
+22.12.2013 -- 5h
+Testauksen luomista, lisää toiminnallisuutta
+02.01.2014 -- 8h
+Käyttöliittymän kanssa hermojen menetystä
+05.01.2014 -- 4h
+Luokkien järjestelemistä
+06.01.2014 -- 6h
+Käyttöliittmä toimii
+09.01.2014 -- 3h
+Testien ja javadocin tekoa, kone simahti
+10.01.2014 -- 6h
+Kone saatiin toimimaan, lisää testejä ja javadocia
 
 
 

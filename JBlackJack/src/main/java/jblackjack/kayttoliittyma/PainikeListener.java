@@ -23,6 +23,11 @@ public class PainikeListener implements ActionListener {
         this.gui = gui;
         this.peli = peli;
     }
+    
+    /**
+     * Kustuu pelilogiikan metodia painikkeen nimen perusteella
+     * @param ae 
+     */
 
     @Override
     public void actionPerformed(ActionEvent ae) {

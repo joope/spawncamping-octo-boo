@@ -10,6 +10,10 @@ import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 import jblackjack.domain.Pelilogiikka;
 
+/**
+ *
+ * @author pyjopy
+ */
 public class Kayttoliittyma implements Runnable {
 
     private JFrame frame;
@@ -28,13 +32,19 @@ public class Kayttoliittyma implements Runnable {
     private JLabel jakajankasi;
     private JLabel pelaajankasi;
     private JLabel voittoStatus;
-    
 
+    /**
+     *
+     * @param peli
+     */
     public Kayttoliittyma(Pelilogiikka peli) {
         this.peli = peli;
         this.nappainKuuntelija = new PainikeListener(this, peli);
     }
 
+    /**
+     *
+     */
     @Override
     public void run() {
         frame = new JFrame("JBlackJack");
@@ -56,9 +66,9 @@ public class Kayttoliittyma implements Runnable {
         
         container.add(luoInfopalkki());
         jakajankasi = new JLabel("Jakajankäsi");
-        jakajankasi.setFont(new Font("Serif", Font.PLAIN, 20));
+        jakajankasi.setFont(new Font("Serif", Font.PLAIN, 15));
         pelaajankasi = new JLabel("Pelaajan käsi");
-        pelaajankasi.setFont(new Font("Serif", Font.PLAIN, 20));
+        pelaajankasi.setFont(new Font("Serif", Font.PLAIN, 15));
         container.add(jakajankasi);
         container.add(new JLabel("-   -   -   -   -   -"));
         container.add(pelaajankasi);
