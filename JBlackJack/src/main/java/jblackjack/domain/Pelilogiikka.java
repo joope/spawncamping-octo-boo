@@ -24,38 +24,44 @@ public class Pelilogiikka {
         status = "Peli alkaa";
     }
 
-    /**
+    /** Luo käyttöliittymän ja laittaa sen käyntiin.
      *
      */
     public void kaynnista() {
         gui = new Kayttoliittyma(this);
         gui.run();
     }
+    
+    /** Aloittaa pelissä uuden kierroksen.
+     * Kortipakka luodaan ja sekoitetaan.
+     * Pelaajan ja jakajan kädet tyhjennetään
+     * ja lopuksi jaetaan kaikille uusi käsi.
+     */
 
-    public void uusiPeli() {
-        //if(status.equals("")){
-        //    pelaaja.luovuta();
-        //}
-        if(pelaaja.panos < 5){
-            pelaaja.laitaPanos(5);
-        }
-        pakka = new Korttipakka();
+    public void aloitaUusiKierros() {
+        
         pelaaja.tyhjennaKasiKorteista();
         jakaja.tyhjennaKasi();
-        jaaKortit();
+        jaaKortitPelaajalleJaJakajalle();
         status = "";
     }
+    
+    /** Jos pelaajan rahat loppuvat, aloitetaan uusi peli.
+     * Pelaajalle annetaan rahat takaisin ja pelaajalle ilmoitetaan tästä pop-up-ikkunan avulla.
+     * 
+     */
 
-    public void rahatLoppuivat() {
+    public void pelaajanRahatLoppuivat() {
         pelaaja = new Pelaaja("Pelaaja", 100);
         status = "Peli alkaa";
         gui.rahatLoppuivat();
     }
 
     /**
-     * Sekoittaa pakan,jakaa kortit pelaajan ja jakajan käteen
+     * Sekoittaa pakan ja jakaa kaksi korttia pelaajalle ja yhden jakajalle.
      */
-    public void jaaKortit() {
+    public void jaaKortitPelaajalleJaJakajalle() {
+        pakka = new Korttipakka();
         pakka.sekoitaPakka();
         pelaaja.otaKorttiKorttipakasta(pakka);
         pelaaja.otaKorttiKorttipakasta(pakka);
@@ -74,7 +80,8 @@ public class Pelilogiikka {
     }
 
     /**
-     * Suoritetaan jos pelaaja pyytää uuden kortin
+     * Suoritetaan jos pelaaja pyytää uuden kortin.
+     * Jos pelaajan käden arvo ylittää 21 kortinjaon jälkeen niin pelaaja häviää.
      */
     public void pyydaUusiKortti() {
         pelaaja.otaKorttiKorttipakasta(pakka);
@@ -145,7 +152,7 @@ public class Pelilogiikka {
         pelaaja.havia();
         status = "Hävisit pelin :(";
         if (pelaaja.rahaa <= 0) {
-            rahatLoppuivat();
+            pelaajanRahatLoppuivat();
         }
     }
 

@@ -99,13 +99,10 @@ public class Pelaaja {
         System.out.println("Rahaa: " + rahaa);
     }
 
-    /** Nollaa pelaajan panoksen ja laittaa edellisen panoksen uudestaan
-     * vähentäen näin rahamäärää panoksen verran.
+    /** Nollaa pelaajan panoksen
      *
      */
     public void havia() {
-        int uusipanos = panos;
         panos = 0;
-        laitaPanos(uusipanos);
     }
 }

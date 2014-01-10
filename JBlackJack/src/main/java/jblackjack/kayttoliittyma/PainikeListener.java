@@ -48,7 +48,7 @@ public class PainikeListener implements ActionListener {
     }
 
     private void uusiJako() {
-        peli.uusiPeli();
+        peli.aloitaUusiKierros();
     }
 
     private void lyoKortti() {
