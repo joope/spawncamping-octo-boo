@@ -40,7 +40,7 @@ public class Pelilogiikka {
             pelaaja.laitaPanos(5);
         }
         pakka = new Korttipakka();
-        pelaaja.tyhjennaKasi();
+        pelaaja.tyhjennaKasiKorteista();
         jakaja.tyhjennaKasi();
         jaaKortit();
         status = "";
@@ -57,8 +57,8 @@ public class Pelilogiikka {
      */
     public void jaaKortit() {
         pakka.sekoitaPakka();
-        pelaaja.otaKortti(pakka);
-        pelaaja.otaKortti(pakka);
+        pelaaja.otaKorttiKorttipakasta(pakka);
+        pelaaja.otaKorttiKorttipakasta(pakka);
         jakaja.nostaKortti(pakka);
         tulostaTilanne();
     }
@@ -77,7 +77,7 @@ public class Pelilogiikka {
      * Suoritetaan jos pelaaja pyytää uuden kortin
      */
     public void pyydaUusiKortti() {
-        pelaaja.otaKortti(pakka);
+        pelaaja.otaKorttiKorttipakasta(pakka);
         if (pelaaja.kasi.laskeKadenArvo() > 21) {
             havio();
         }

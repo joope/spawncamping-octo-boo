@@ -27,19 +27,25 @@ public class Pelaaja {
         viimeToiminto = 0;
     }
 
-    /**
+    /** Ottaa korttipakasta kortin ja lisää sen pelaajan käteen.
      *
      * @param pakka
      */
-    public void otaKortti(Korttipakka pakka) {
+    public void otaKorttiKorttipakasta(Korttipakka pakka) {
         kasi.nostaKortti(pakka);
     }
+    
+    
+    /** Tyhjentää pelaajan käden.
+     *
+     */
 
-    public void tyhjennaKasi() {
+    public void tyhjennaKasiKorteista() {
         kasi.tyhjennaKasi();
     }
 
-    /**
+    /** Pelaajan rahoja kasvatetaan kaksi kertaa panoksen verran, 
+     * ja uudeksi panokseksi lisätään vanha panos.
      *
      */
     public void voita() {
@@ -49,14 +55,14 @@ public class Pelaaja {
         laitaPanos(uusipanos);
     }
 
-    /**
+    /** Pelaajan panos kaksinkertaistetaan.
      *
      */
     public void doubleDown() {
         laitaPanos(panos);
     }
 
-    /**
+    /** Pelaajan menettää rahoistaan puolet nykyisestä panoksesta.
      *
      */
     public void luovuta() {
@@ -64,7 +70,9 @@ public class Pelaaja {
         panos = 0;
     }
 
-    /**
+    /** Ottaa rahaa pelaajalta ja laittaa sen panokseksi.
+     * Jos panostus on negatiivinen, pelaajan panoksesta vähennetään sen määrä,
+     * ja lisätään rahoihin, kunhan panoksen määrä ei mene alle viiden.
      *
      * @param panostus
      */
@@ -78,31 +86,11 @@ public class Pelaaja {
         }
     }
 
-    /**
-     *
-     * @param toiminto
-     */
-    public void setViimeToiminto(int toiminto) {
-        viimeToiminto = toiminto;
-    }
-
-    /**
-     *
-     * @return
-     */
     public int getPanos() {
         return panos;
     }
 
-    /**
-     *
-     * @return
-     */
-    public int getViimeToiminto() {
-        return viimeToiminto;
-    }
-
-    /**
+    /** Tulostaa konsoliin pelaajan nimen, kortit ja rahan määrän.
      *
      */
     public void tulostaTiedot() {
@@ -111,7 +99,8 @@ public class Pelaaja {
         System.out.println("Rahaa: " + rahaa);
     }
 
-    /**
+    /** Nollaa pelaajan panoksen ja laittaa edellisen panoksen uudestaan
+     * vähentäen näin rahamäärää panoksen verran.
      *
      */
     public void havia() {
