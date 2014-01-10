@@ -39,6 +39,13 @@ public class Pelilogiikka {
      * käsi.
      */
     public void aloitaUusiKierros() {
+        if (status.isEmpty()){
+            pelaaja.panos = 0;
+            if(pelaaja.rahaa <= 5){
+                havio();
+            }
+            pelaaja.laitaPanos(5);
+        }
         if (pelaaja.panos < 5) {
             pelaaja.laitaPanos(5);
         }

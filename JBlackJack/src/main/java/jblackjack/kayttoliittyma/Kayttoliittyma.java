@@ -106,6 +106,12 @@ public class Kayttoliittyma implements Runnable {
         piilotaNapit();
     }
     
+    /**
+     * Piilottaa käyttöliittymän painikkeet pelistatuksen mukaan.
+     * Jos kierros on käynnissä niin panoksensäätönappulat piiloitetaan
+     * muulloin piiloitetaan hit,stay ja doubledown-painikkeet.
+     */
+    
     private void piilotaNapit(){
         if(!peli.getStatus().equals("")){
             lyoKortti.setEnabled(false);
@@ -125,6 +131,12 @@ public class Kayttoliittyma implements Runnable {
     public JFrame getFrame() {
         return frame;
     }
+    
+    /**
+     * Luo käyttöliittymän infopalkin.
+     * Sisältää pelaajan rahamäärän, nykyisen panoksen ja panoksensäätämisnäppäimet.
+     * @return 
+     */
 
     private JPanel luoInfopalkki() {
         JPanel palkki = new JPanel();
@@ -148,6 +160,11 @@ public class Kayttoliittyma implements Runnable {
         
         return palkki;
     }
+    
+    /**
+     * Luo pelivalikon, joka sisältää hit,stay,UusiJako ja doubledown-painikkeet.
+     * @return 
+     */
     
     private JPanel luoPeliValikko(){
         JPanel peliValikko = new JPanel();
