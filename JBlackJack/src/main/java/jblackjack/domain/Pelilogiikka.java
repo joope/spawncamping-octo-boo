@@ -34,7 +34,10 @@ public class Pelilogiikka {
     }
 
     /**
-     * Aloittaa pelissä uuden kierroksen. Kortipakka luodaan ja sekoitetaan.
+     * Aloittaa pelissä uuden kierroksen. 
+     * Jos pelaaja pyytää uudet kortit ennen pelin loppua, niin pelaaja menettää rahat.
+     * Jos pelaajan rahat ovat 0 kun hän pyytää uudet kortit, hän häviää.
+     * Kortipakka luodaan ja sekoitetaan.
      * Pelaajan ja jakajan kädet tyhjennetään ja lopuksi jaetaan kaikille uusi
      * käsi.
      */
