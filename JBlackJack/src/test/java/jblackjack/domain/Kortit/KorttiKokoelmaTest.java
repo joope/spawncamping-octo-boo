@@ -49,8 +49,8 @@ public class KorttiKokoelmaTest {
     }
     
     @Test
-    public void luetteleKorttejaPalauttaaEiKorttejaJosTyhja(){
-        assertEquals("Ei kortteja!", kokoelma.luetteleKortit());
+    public void luetteleKorttejaPalauttaaTyhjanMerkkirivinJosTyhja(){
+        assertEquals("", kokoelma.luetteleKortit());
     }
     
     @Test

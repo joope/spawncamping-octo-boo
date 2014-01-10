@@ -42,18 +42,12 @@ public class KorttipakkaTest {
         pakka.nostaKortti();
         assertEquals(50, pakka.kortit.size());
     }
-    /*@Test
-    public void korttipakanSekoitusToimiiOikein(){
-        ArrayList<Kortti> pakkaEnnenSekoitusta = pakka.pakka;
-        pakka.sekoitaPakka();
-        boolean sekoitettu = false;
+    @Test
+    public void korttipakanNostaminenPalauttaaNullJosEiKortteja(){
         for (int i = 0; i < 52; i++) {
-            if (pakkaEnnenSekoitusta.get(i) != pakka.pakka.get(i)){
-                sekoitettu = true;
-            }
+            pakka.nostaKortti();
         }
-        assertTrue(sekoitettu);
+        assertEquals(null, pakka.nostaKortti());
     }
-    */
         
 }
