@@ -1,6 +1,0 @@
-Pelilogiikka luo käyttöliittymän, pelaajan, jakajan käden ja korttipakan.
-Käyttöliittymä kutsuu pelilogiikka-luokan metodeja nappainListener-luokan avulla. (Nosta uusi kortti, doubledown)
-Pelilogiikka kutsuu pelaajan metodeja(Nostakortti, doubledown..)
-Korttikäsi ja korttipakka ovat korttikokoelman aliluokkia.
-Pelaajalla on yksi korttikäsi ja jakaja on yksi korttikäsi.
-Korttikokoelma koostuu kortti-olioista ja kortien maa on enum-tyyppinen.
